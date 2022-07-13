@@ -1,6 +1,8 @@
 package com.laurencetuchin.springbootblogapplication.controllers;
 
+import com.laurencetuchin.springbootblogapplication.models.Account;
 import com.laurencetuchin.springbootblogapplication.models.Post;
+import com.laurencetuchin.springbootblogapplication.services.AccountService;
 import com.laurencetuchin.springbootblogapplication.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private AccountService accountService;
+
     @GetMapping("/posts/{id}")
     public String getPost(@PathVariable Long id, Model model) {
         // find the post by id
@@ -26,6 +31,19 @@ public class PostController {
             model.addAttribute("post", post);
             return "post";
         } else {
+            return "404";
+        }
+    }
+
+    @GetMapping("/posts/new")
+    public String createNewPost(Model model){
+        Optional<Account> optionalAccount = accountService.findByEmail("user@user.com");
+        if (optionalAccount.isPresent()) {
+            Post post = new Post();
+            post.setAccount(optionalAccount.get());
+            model.addAttribute("post",post);
+            return "post_new";
+        }   else {
             return "404";
         }
     }
