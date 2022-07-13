@@ -24,7 +24,7 @@ public class PostController {
         if (optionalPost.isPresent()) {
             Post post = optionalPost.get();
             model.addAttribute("post", post);
-            return "posts";
+            return "post";
         } else {
             return "404";
         }
