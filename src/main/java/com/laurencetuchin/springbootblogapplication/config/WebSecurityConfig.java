@@ -13,7 +13,6 @@ public class WebSecurityConfig {
 
     private static final String[] WHITELIST = {
             "/register",
-            "/login",
             "h2-console/*",
             "/"
 
@@ -25,8 +24,25 @@ public class WebSecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers(WHITELIST).permitAll()
-                .antMatchers(HttpMethod.GET, "/posts/*")
+                .antMatchers(HttpMethod.GET, "/posts/*").permitAll()
                 .anyRequest().authenticated();
+
+        http
+                .formLogin()
+                        .loginPage("/login")
+                                .loginProcessingUrl("/login")
+                                        .usernameParameter("email")
+                                                .passwordParameter("password")
+                                                        .defaultSuccessUrl("/",true)
+                                                                .failureUrl("/login?error")
+                                                                        .permitAll()
+                                                                                .and()
+                                                                                        .logout()
+                                                                                                .logoutUrl("/logout")
+                                                                                                        .logoutSuccessUrl("/login?logout")
+                                                                                                                .and()
+                                                                                                                        .httpBasic();
+
 //        custom for h2 console
         http.csrf().disable();
         http.headers().frameOptions().disable();
