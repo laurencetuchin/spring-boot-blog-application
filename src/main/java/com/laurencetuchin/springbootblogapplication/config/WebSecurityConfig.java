@@ -27,6 +27,9 @@ public class WebSecurityConfig {
                 .antMatchers(WHITELIST).permitAll()
                 .antMatchers(HttpMethod.GET, "/posts/*")
                 .anyRequest().authenticated();
+//        custom for h2 console
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
         return http.build();
     }
