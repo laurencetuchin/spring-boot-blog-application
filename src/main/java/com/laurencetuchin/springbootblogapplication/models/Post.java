@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -18,7 +19,9 @@ public class Post {
 
     private String title;
 
+    // TODO - add validation constraints
     @Column(columnDefinition = "TEXT")
+//    @NotBlank(message = "Body must not be blank")
     private String body;
 
     private LocalDateTime createdAt;

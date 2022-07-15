@@ -4,10 +4,6 @@ import com.laurencetuchin.springbootblogapplication.models.Account;
 import com.laurencetuchin.springbootblogapplication.models.Post;
 import com.laurencetuchin.springbootblogapplication.services.AccountService;
 import com.laurencetuchin.springbootblogapplication.services.PostService;
-import com.laurencetuchin.springbootblogapplication.models.Account;
-import com.laurencetuchin.springbootblogapplication.models.Post;
-import com.laurencetuchin.springbootblogapplication.services.AccountService;
-import com.laurencetuchin.springbootblogapplication.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -18,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Optional;
 
