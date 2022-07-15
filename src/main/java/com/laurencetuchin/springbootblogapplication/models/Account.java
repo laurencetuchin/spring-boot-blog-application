@@ -35,7 +35,7 @@ public class Account {
     @JoinTable(name = "account_authority",
     joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
     inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
-    private Set<Authority> authorities = new java.util.LinkedHashSet<>();
+    private Set<Authority> authorities = new HashSet<>();
 
     @Override
     public String toString() {
