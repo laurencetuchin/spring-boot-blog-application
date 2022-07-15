@@ -1,9 +1,6 @@
 package com.laurencetuchin.springbootblogapplication.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,9 +8,9 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Getter
 @Setter
 @NoArgsConstructor
+@Getter
 public class Account {
 
     @Id
@@ -29,7 +26,7 @@ public class Account {
     private String lastName;
 
     @OneToMany(mappedBy = "account")
-    private List<Post> posts;
+    private List<Post> posts = new java.util.ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "account_authority",
