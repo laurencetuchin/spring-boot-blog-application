@@ -20,6 +20,7 @@ public class PostService {
 
     }
 
+    // TODO - add Query search function
     public List<Post> getAll() {
         return postRepository.findAll();
     }
